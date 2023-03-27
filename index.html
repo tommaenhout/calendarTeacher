@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Calendario Tom</title>
+</head>
+<body>
+    <header>
+        <h1>Calendar teacher Tom</h1>
+        <p id="timezone"> Timezone: GMT-03</p>
+        <p id="date">Date today: 18/03/2023</p>
+        <p id="month">Month: March</p>
+    </header>
+    <main>
+        <section>
+         <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                          
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Lesson</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <div  class="btn btn-secondary" data-bs-dismiss="modal">Close</div>
+                                <div  class="btn btn-primary">Schedule lesson</div>
+                            </div>
+            
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id=#calendar>
+        <section class="navigationCalendar">
+            <div class="previous">Previous week</div>
+            <div class="next">Next week</div>
+        </section>
+        <section class="daysOfTheWeek">
+            <div class="title"><h4>Monday</h4></div>
+            <div class="title"><h4>Tuesday</h4></div>
+            <div class="title"><h4>Wednesday</h4></div>
+            <div class="title"><h4>Thursday</h4></div>
+            <div class="title"><h4>Friday</h4></div>
+            <div class="title"><h4>Saturday</h4></div>
+            <div class="title"><h4>Sunday</h4></div>
+        </section>
+        <section class="daysOfTheWeek">
+            <div id="titleMonday" class="title"><h2>18</h2></div>
+            <div id="titleTuesday" class="title"><h2>19</h2></div>
+            <div id="titleWednesday" class="title"><h2>20</h2></div>
+            <div id="titleThursday" class="title"><h2>21</h2></div>
+            <div id="titleFriday" class="title"><h2>22</h2></div>
+            <div id="titleSaturday" class="title"><h2>23</h2></div>
+            <div id="titleSunday" class="title"><h2>24</h2></div>
+        </section>
+        <section class="calendar">        
+            <div class="leftColumn"> 
+                <div></div>             
+                <div>1am</div>
+                 <div></div>  
+                <div>2am</div>
+                 <div></div>  
+                <div>3am</div>
+                 <div></div>  
+                <div>4am</div>
+                 <div></div>  
+                <div>5am</div>
+                 <div></div>  
+                <div>6am</div>
+                 <div></div>  
+                <div>7am</div>
+                 <div></div>  
+                <div>8am</div>
+                 <div></div>  
+                <div>9am</div>
+                 <div></div>  
+                <div>10am</div>
+                 <div></div>  
+                <div>11am</div>
+                 <div></div>  
+                <div>12pm</div>
+                 <div></div>  
+                <div>13pm</div>
+                 <div></div>  
+                <div>14pm</div>
+                 <div></div>  
+                <div>15pm</div>
+                 <div></div>  
+                <div>16pm</div>
+                 <div></div>  
+                <div>17pm</div>
+                 <div></div>  
+                <div>18pm</div>
+                 <div></div>  
+                <div>19pm</div>
+                 <div></div>  
+                <div>20pm</div>
+                 <div></div>  
+                <div>21pm</div>
+                 <div></div>  
+                <div>22pm</div>
+                 <div></div>  
+                <div>23pm</div>
+                 <div></div>  
+                <div></div>
+            </div>
+            <div id="Monday">  
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+           
+            </div>
+            <div id="Tuesday">
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+            <div id="Wednesday">
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+            <div id="Thursday">
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+            <div id="Friday">
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+            <div id = "Saturday">
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+            <div id="Sunday">                   
+                <div id="0" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>            
+                <div id="1" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="4" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="5" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="6" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="7" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="8" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="9" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="10" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="11" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="12" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="13" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="14" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="15" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="16" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="17" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="18" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="19" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="20" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="21" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="22" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="23" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="24" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="25" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="26" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="27" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="28" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="29" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="30" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="31" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="32" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="33" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="34" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="35" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="36" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="37" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="38" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="39" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="40" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="41" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="42" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="43" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="44" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="45" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="46" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+                <div id="47" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></div>
+            </div>
+        </section>
+    </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+html {
+  background-color: #fffcf2;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  color: #252422;
+  box-sizing: border-box;
+  padding-left: 50px;
+  padding-right: 50px; }
+
+#name {
+  margin-bottom: 10px; }
+
+.daysOfTheWeek {
+  padding-left: 50px; }
+
+.calendar {
+  height: 60vh;
+  width: 100%;
+  overflow: scroll; }
+
+main {
+  background-color: #fffcf2;
+  color: #252422; }
+
+header {
+  background-color: #fffcf2;
+  color: #252422;
+  padding-left: 50px;
+  padding-bottom: 10px; }
+
+section section {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: fit-content; }
+  section section div {
+    text-align: center; }
+    section section div div {
+      height: 35px;
+      background-color: #ccc5b9;
+      width: 160px;
+      margin: 1px;
+      cursor: pointer; }
+      section section div div:hover {
+        background-color: #403d39; }
+
+h1 {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.today {
+  background-color: #fffcf2; }
+  .today .title {
+    background-color: #403d39; }
+    .today .title:hover {
+      background-color: #403d39; }
+  .today div {
+    background-color: #eb5e28; }
+    .today div:hover {
+      background-color: #403d39; }
+
+.title {
+  text-align: center;
+  color: #fefae0;
+  font-weight: bold;
+  height: 40px;
+  display: flex;
+  width: 160px;
+  justify-content: center;
+  align-items: center;
+  margin: 1px;
+  background-color: #403d39; }
+  .title:hover {
+    background-color: #403d39; }
+
+.leftColumn {
+  width: 50px;
+  margin-top: 10px;
+  background-color: #fffcf2; }
+  .leftColumn div {
+    background-color: #fffcf2;
+    width: 45px;
+    text-align: end;
+    font-size: small;
+    display: flex;
+    justify-content: end;
+    align-items: end; }
+    .leftColumn div:hover {
+      background-color: #fffcf2; }
+    .leftColumn div div {
+      background-color: #fffcf2;
+      width: 20px;
+      margin: 1px;
+      cursor: pointer; }
+      .leftColumn div div:hover {
+        background-color: #fefae0; }
+
+.ocupied {
+  background-color: #eb5e28;
+  color: #fefae0; }
+  .ocupied:hover {
+    background-color: #eb5e28; }
+
+.navigationCalendar {
+  display: flex;
+  justify-content: space-between;
+  width: 1133px;
+  margin-left: 50px;
+  margin-bottom: 2px; }
+  .navigationCalendar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    padding: 5px;
+    background-color: #ccc5b9;
+    color: white;
+    cursor: pointer; }
+    .navigationCalendar div:hover {
+      background-color: #eb5e28;
+      color: #fefae0; }

@@ -1,0 +1,170 @@
+$darkGreen: #403d39;
+$backgroundColor: #fffcf2;
+$white: #252422;
+$yellow: #ccc5b9;
+$redbrown: #eb5e28;
+
+
+html {
+    background-color: $backgroundColor;
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    color: $white;
+    box-sizing: border-box;
+    padding-left: 50px;
+    padding-right: 50px;
+ 
+}
+
+#name {
+    margin-bottom: 10px;
+}
+
+
+
+.daysOfTheWeek {
+    padding-left: 50px;
+}
+
+.calendar {
+    height: 60vh;
+    width: 100%;
+    overflow: scroll;
+
+}
+
+main {
+    background-color: $backgroundColor;
+    color: $white;
+}
+header {
+    background-color: $backgroundColor;
+    color: $white;
+    padding-left: 50px;
+    padding-bottom: 10px;
+}
+section {
+        section {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: fit-content;
+        div {
+            text-align: center;
+            div {
+                height: 35px;
+                background-color: $yellow;
+                width: 160px;
+                margin: 1px;
+                cursor: pointer;
+                &:hover {
+                    background-color: $darkGreen;
+                    
+                }
+            }
+        } 
+    }
+}
+
+h1 {
+   margin-top: 15px;
+   margin-bottom: 15px;
+}
+
+.today {
+    background-color: $backgroundColor;
+    .title {
+        background-color: $darkGreen;
+        &:hover {
+            background-color:  $darkGreen;
+        }
+    }
+
+    div {
+        background-color: $redbrown;
+        &:hover {
+            background-color: $darkGreen;
+        }
+    }
+}
+
+
+.title {
+
+    text-align: center;
+    color: #fefae0;
+    font-weight: bold;
+    height: 40px;
+    display: flex;
+    width: 160px;
+    justify-content: center;
+    align-items: center;
+    margin: 1px;
+    background-color: $darkGreen;
+    &:hover {
+        background-color: $darkGreen;    
+    }
+
+}
+
+.leftColumn {
+    width: 50px;
+    margin-top: 10px;
+    background-color: $backgroundColor;
+    div {
+        background-color: $backgroundColor;
+        width: 45px; 
+        &:hover {
+            background-color: $backgroundColor;
+        }
+        text-align: end;
+        font-size: small;
+        display:flex;
+        justify-content: end;
+        align-items: end;
+        div {
+            background-color: $backgroundColor;
+            width: 20px;
+            margin: 1px;
+            cursor: pointer;
+            &:hover {
+                background-color:#fefae0;   
+            }
+        }
+    }
+}
+
+.ocupied {
+    background-color: $redbrown;
+    color: #fefae0;
+    &:hover {
+        background-color: $redbrown;
+    }
+}
+
+.navigationCalendar {
+    display: flex;
+    justify-content: space-between;
+    width: 1133px;
+    margin-left: 50px;
+    margin-bottom: 2px;
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 150px;
+        padding: 5px;   
+        background-color: $yellow;
+        color:white;
+        cursor: pointer;
+        &:hover {
+            background-color: $redbrown;
+            color:#fefae0;
+        }
+    }
+
+}
+
+
+
