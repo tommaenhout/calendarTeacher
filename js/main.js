@@ -1,5 +1,7 @@
-
 import {DateTime} from 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/+esm'
+//import axios from node modules axios
+
+
 
 let count = 0;
 const date = DateTime.local().plus({weeks: count}).toJSDate();
@@ -11,7 +13,7 @@ const dayOfMonth = date.getDate();
 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-function Appointment (name, date, time) {
+function Reservation (name, date, time) {
     this.name = name;
     this.date = date;
     this.time = time;
@@ -23,7 +25,7 @@ let week = null
 week = setButtonsPreviousAndNextWeek()
 week = setDaysOfWeek(day, count)
 activateCalenderHours(week)
-loadAppointments()
+loadReservations()
 
 
 function setDaysOfWeek(day, count,date) {
@@ -137,16 +139,17 @@ function setButton (button, next) {
     })
 }
 
-function loadAppointments () {
-    console.log("fetching appointments...")
+function loadReservations () {
+    console.log("fetching Reservations...")
+    getReservations()
 
 }
 
 function activateButton (date, time) {
     document.querySelector('.modal-footer > div:nth-child(2)').addEventListener('click', () => {
         const name = document.querySelector('#name').value
-        let appointment = new Appointment(name, date, time)
-        console.log(appointment)
+        let reservation = new Reservation(name, date, time)
+        postReservation(reservation)
     })
 }
 
@@ -206,4 +209,58 @@ function generateWeekArray (date, untilNegative) {
         }
     return week
 }
+
+
+async function postReservation (reservation) {
+    console.log("posting reservation...") 
+
+
+    await axios.post('https://calendarback-production-4a4b.up.railway.app/reservations', {
+        nameStudent: reservation.name,
+        date: reservation.date,
+        time: reservation.time
+    })
+        .then(function (response) {
+            console.log(response.data);
+          })
+        .catch(function (error) {
+        console.log(error);        
+    })
+}
+
+async function getReservations () {
+    console.log("getting reservations...")
+
+
+    await axios.get('https://calendarback-production-4a4b.up.railway.app/reservations')
+        .then(function (response) {
+            const reservations = response.data
+            console.log(reservations)
+            showReservations(reservations)
+        })
+        .catch(function (error) {
+        console.log(error);        
+    })
+}
+
+function showReservations (reservations) {
+    reservations.forEach(reservation => {
+        const date = DateTime.fromISO(reservation.date)
+        const day = date.toJSDate().getDay()
+        const hour = reservation.time
+        const name = reservation.nameStudent
+        const dayName = days[day]
+        document.querySelector(`#${dayName} > div:nth-child(${hour})`).innerHTML = `<p>${name}</p>`
+        
+    })
+}
+
+
+
+ 
+
+
+
+
+
 
