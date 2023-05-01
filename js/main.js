@@ -100,7 +100,7 @@ function openModal (id,day,week) {
     modalTitle.innerHTML = `<h5 class="modal-title" id="staticBackdropLabel">Schedule class</h5>`
     let index = days.indexOf(day)
     // sunday as other logic for the index
-    index = index === 0 ? 7 : index
+    index = index === 0 && day ===0 ? 7 : index
     let dayOfTheWeekSelected = week[index]
     modalBody.innerHTML =`
     <p>${dayOfTheWeekSelected} hour: ${id/2}</p>
@@ -238,7 +238,7 @@ async function getReservations (week) {
     await axios.get('http://localhost:3000/reservations')
         .then(function (response) {
              reservations = response.data
-            console.log(reservations)
+           
             showReservations(week, reservations)
         })
         .catch(function (error) {
@@ -249,18 +249,21 @@ async function getReservations (week) {
 function showReservations (week, reservations) {
     let i = 0;
     let arrayTrueMomentsForThisWeek = []
+   
     // empty calendar before showing the reservations
     emptyWeek()
     reservations.forEach(reservation => {
+        console.log(reservation)
         const dateReservation = DateTime.fromISO(reservation.date)
         let dayIndexReservaton = dateReservation.toJSDate().getDay()
+        console.log (week)
         console.log('day', day, i)
         const hourReservation = reservation.time
         const nameStudent = reservation.nameStudent
         const dayNameReservation = days[dayIndexReservaton]
         // sunday as other logic for the index
-
-        let index = dayIndexReservaton === 0 ? 7 : dayIndexReservaton
+        let index =  dayIndexReservaton === 0 && day === 0 ? 7  :  dayIndexReservaton
+        console.log(week)
         console.log('week ' + week + 'index ', index)
         let currentDateOnCalendar = week[index]
 
