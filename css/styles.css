@@ -120,3 +120,14 @@ h1 {
     .navigationCalendar div:hover {
       background-color: #eb5e28;
       color: #fefae0; }
+
+.button-close {
+  background-color: #eb5e28;
+  color: #fefae0;
+  cursor: pointer;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 5px; }
+  .button-close:hover {
+    background-color: #eb5e28; }

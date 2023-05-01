@@ -2,7 +2,7 @@ $darkGreen: #403d39;
 $backgroundColor: #fffcf2;
 $white: #252422;
 $yellow: #ccc5b9;
-$redbrown: #eb5e28;
+$orange: #eb5e28;
 
 
 html {
@@ -82,7 +82,7 @@ h1 {
     }
 
     div {
-        background-color: $redbrown;
+        background-color: $orange;
         &:hover {
             background-color: $darkGreen;
         }
@@ -136,10 +136,10 @@ h1 {
 }
 
 .ocupied {
-    background-color: $redbrown;
+    background-color: $orange;
     color: #fefae0;
     &:hover {
-        background-color: $redbrown;
+        background-color: $orange;
     }
 }
 
@@ -159,11 +159,24 @@ h1 {
         color:white;
         cursor: pointer;
         &:hover {
-            background-color: $redbrown;
+            background-color: $orange;
             color:#fefae0;
         }
     }
 
+}
+
+.button-close {
+    background-color: $orange;
+    color: #fefae0;
+    cursor: pointer;
+    &:hover {
+        background-color: $orange;
+    }
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
 }
 
 

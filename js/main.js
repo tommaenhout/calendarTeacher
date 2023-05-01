@@ -6,12 +6,14 @@ import {DateTime} from 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/+esm'
 let count = 0;
 const date = DateTime.local().plus({weeks: count}).toJSDate();
 const offset = date.getTimezoneOffset();
-const day = date.getDay();
+const day = date.getDay(); //sunday is 0
 const year = date.getFullYear();
 const month = date.getMonth();
 const dayOfMonth = date.getDate();
-const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const days = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+let reservations = [];
+
 
 function Reservation (name, date, time) {
     this.name = name;
@@ -21,14 +23,13 @@ function Reservation (name, date, time) {
 
 document.getElementById('date').innerHTML = `Date today: ${days[day]}, ${months[month]} ${dayOfMonth}, ${year}`
 document.getElementById('timezone').innerHTML = `Timezone: GMT${offset < 0 ? "+" : "-"}${Math.abs(offset/60) > 9 ? 1 : 0}${offset/60}`
-let week = null
+let week = {}
 week = setButtonsPreviousAndNextWeek()
 week = setDaysOfWeek(day, count)
-activateCalenderHours(week)
-loadReservations()
 
 
 function setDaysOfWeek(day, count,date) {
+    // calendar logic is set here. Logic all starts with today's date and then it's set to the day of the week
     date = DateTime.local().plus({weeks: count});
     setToday(count, day);
     setMonth(date);
@@ -59,11 +60,12 @@ function setDaysOfWeek(day, count,date) {
             daysOfTheweekGenerator(5,date)
             break;
         case 'Sunday':
-            weekTotal = generateWeekArray(date,6)         
+            weekTotal = generateWeekArray(date,6)    
             daysOfTheweekGenerator(6,date)
             break;  
     }
     activateCalenderHours(weekTotal)
+    loadReservations(weekTotal)
     return weekTotal;
 }
 
@@ -92,14 +94,13 @@ function activateCalenderHours (week) {
 )}
 
 function openModal (id,day,week) {
-    console.log(id, day)
     const modalBody = document.querySelector('.modal-body')
     const modalTitle = document.querySelector('.modal-title')
     const modalFooter = document.querySelector('.modal-footer')
     modalTitle.innerHTML = `<h5 class="modal-title" id="staticBackdropLabel">Schedule class</h5>`
     let index = days.indexOf(day)
-    console.log(index)
-    console.log(week)
+    // sunday as other logic for the index
+    index = index === 0 ? 7 : index
     let dayOfTheWeekSelected = week[index]
     modalBody.innerHTML =`
     <p>${dayOfTheWeekSelected} hour: ${id/2}</p>
@@ -108,22 +109,20 @@ function openModal (id,day,week) {
         <input class="form-control" id="name" placeholder="name student"></input>
         <label hidden for= "from" class="form-label">from</label>
         <select class="form-control" id="from" placeholder="from" >
-            <option value="1">1 hour</option>
-            <option value="2">2 hours</option>
-            <option value="3">3 hours</option>
+            <option value="1">0.5 hour</option>
         </select>
     </form>
     `
     modalFooter.innerHTML = `
-    <div data-bs-dismiss="modal">Close</div>
-    <div data-bs-dismiss="modal">Schedule lesson</div>`
+    <div class="button-close" data-bs-dismiss="modal">Close</div>
+    <div class="button-close" data-bs-dismiss="modal">Schedule lesson</div>`
 
-    activateButton(dayOfTheWeekSelected, id)
+    activateButton(dayOfTheWeekSelected, id, week)
 }
 
 function setButtonsPreviousAndNextWeek () {
     week = setButton(".previous", false)
-    week = setButton(".next", true)
+    week = setButton(".next", true) 
     return week
     
 }
@@ -133,32 +132,37 @@ function setButton (button, next) {
         next ? count++ : count--;
         const date = DateTime.local().plus({weeks: count}).toJSDate();
         const day = date.getDay();
-        let week = setDaysOfWeek(day, count, date) 
-        console.log(week)
+        let week = setDaysOfWeek(day, count, date)
+        loadReservations(week)
         return week
     })
 }
 
-function loadReservations () {
+function loadReservations (week) {
     console.log("fetching Reservations...")
-    getReservations()
+    getReservations(week)
 
 }
 
-function activateButton (date, time) {
+function activateButton (date, time, week) {
     document.querySelector('.modal-footer > div:nth-child(2)').addEventListener('click', () => {
         const name = document.querySelector('#name').value
         let reservation = new Reservation(name, date, time)
-        postReservation(reservation)
+        postReservation(reservation, week)
     })
 }
 
 function daysOfTheweekGenerator (untilNegative,date) {
+    // setting the days of the week in the heading part of the calendar
     let negativeNumber = untilNegative;
     let positiveNumber = 1;
+    // in case if it's sunday, it will be another logic
+    if (untilNegative === 6) {
+       negativeNumber = -1
+    }
     for (let i = 0; i < 7; i++){
         if(i < untilNegative){
-            document.querySelector(`#title${days[day-negativeNumber]}`).innerHTML= `<h3>${date.minus({days: negativeNumber}).toJSDate().getDate()}</h3>`
+            document.querySelector(`#title${days[day-negativeNumber]}`).innerHTML= `<h3>${date.minus({days: negativeNumber, week: untilNegative === 6 ? 1 : 0}).toJSDate().getDate()}</h3>`
             negativeNumber--
         }
         else if (i === untilNegative){
@@ -167,17 +171,14 @@ function daysOfTheweekGenerator (untilNegative,date) {
         }
         else {
             if(i !== 6) {
-                console.log("positive" + i + positiveNumber)
                 document.querySelector(`#title${days[day+positiveNumber]}`).innerHTML= `<h3>${date.plus({days: positiveNumber}).toJSDate().getDate()}</h3>`
             }else {
-                console.log("positive" + i + positiveNumber)
                 document.querySelector(`#title${days[day-untilNegative-1]}`).innerHTML= `<h3>${date.plus({days: positiveNumber}).toJSDate().getDate()}</h3>`
             }            
             positiveNumber++
         }
     }
 }
-
 
 function generateWeekArray (date, untilNegative) {
         let positiveNumber = 1;
@@ -211,49 +212,110 @@ function generateWeekArray (date, untilNegative) {
 }
 
 
-async function postReservation (reservation) {
+async function postReservation (reservation, week) {
+    // please don't forget to npm install axios before running this code
     console.log("posting reservation...") 
 
-
-    await axios.post('https://calendarback-production-4a4b.up.railway.app/reservations', {
+    await axios.post('http://localhost:3000/reservations', {
         nameStudent: reservation.name,
         date: reservation.date,
         time: reservation.time
     })
         .then(function (response) {
             console.log(response.data);
+            loadReservations(week)
           })
         .catch(function (error) {
         console.log(error);        
     })
 }
 
-async function getReservations () {
+async function getReservations (week) {
+    // please don't forget to npm install axios before running this code
     console.log("getting reservations...")
 
 
-    await axios.get('https://calendarback-production-4a4b.up.railway.app/reservations')
+    await axios.get('http://localhost:3000/reservations')
         .then(function (response) {
-            const reservations = response.data
+             reservations = response.data
             console.log(reservations)
-            showReservations(reservations)
+            showReservations(week, reservations)
         })
         .catch(function (error) {
         console.log(error);        
     })
 }
 
-function showReservations (reservations) {
+function showReservations (week, reservations) {
+    let i = 0;
+    let arrayTrueMomentsForThisWeek = []
+    // empty calendar before showing the reservations
+    emptyWeek()
     reservations.forEach(reservation => {
-        const date = DateTime.fromISO(reservation.date)
-        const day = date.toJSDate().getDay()
-        const hour = reservation.time
-        const name = reservation.nameStudent
-        const dayName = days[day]
-        document.querySelector(`#${dayName} > div:nth-child(${hour})`).innerHTML = `<p>${name}</p>`
-        
+        const dateReservation = DateTime.fromISO(reservation.date)
+        let dayIndexReservaton = dateReservation.toJSDate().getDay()
+        console.log('day', day, i)
+        const hourReservation = reservation.time
+        const nameStudent = reservation.nameStudent
+        const dayNameReservation = days[dayIndexReservaton]
+        // sunday as other logic for the index
+
+        let index = dayIndexReservaton === 0 ? 7 : dayIndexReservaton
+        console.log('week ' + week + 'index ', index)
+        let currentDateOnCalendar = week[index]
+
+        // make variables to compare the day of the week visible on the calendar with the day of the week provided by the reservation
+        let compareCurrent = currentDateOnCalendar.c
+        let compareReservation = dateReservation.c
+
+        //compare the variables if true show the name of the student on the calendar
+        console.log(compareCurrent, compareReservation)
+        console.log(compareCurrent.year === compareReservation.year && compareCurrent.month === compareReservation.month  && compareCurrent.day === compareReservation.day)
+       
+        if (compareCurrent.year === compareReservation.year && compareCurrent.month === compareReservation.month  && compareCurrent.day === compareReservation.day) {
+            //set name student in calendar
+        document.querySelector(`#${dayNameReservation} > div:nth-child(${hourReservation+1})`).innerText = `${nameStudent}`
+            arrayTrueMomentsForThisWeek.push(hourReservation+1, dayNameReservation, compareCurrent.day)
+            console.log(arrayTrueMomentsForThisWeek)
+        } else {
+            // if there is no match we set this moment to empty 
+            let isNotInArray = !arrayTrueMomentsForThisWeek.includes(hourReservation+1, dayNameReservation)
+            if (isNotInArray) {
+                document.querySelector(`#${dayNameReservation} > div:nth-child(${hourReservation+1})`).innerText = ''
+            }
+        }
     })
 }
+
+
+function emptyWeek () {
+    var mondayDivs = document.querySelectorAll('#Monday div[id]');
+    var tuesdayDivs = document.querySelectorAll('#Tuesday div[id]');
+    var wednesdayDivs = document.querySelectorAll('#Wednesday div[id]');
+    var thursdayDivs = document.querySelectorAll('#Thursday div[id]');
+    var fridayDivs = document.querySelectorAll('#Friday div[id]');
+    var saturdayDivs = document.querySelectorAll('#Saturday div[id]');
+    var sundayDivs = document.querySelectorAll('#Sunday div[id]');
+    let divs = [sundayDivs, mondayDivs, tuesdayDivs, wednesdayDivs, thursdayDivs, fridayDivs, saturdayDivs]
+    divs.forEach(div => {
+        div.forEach(div => {
+            div.innerHTML = ''
+        })
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
