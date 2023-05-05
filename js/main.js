@@ -1,6 +1,4 @@
 import {DateTime} from 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/+esm'
-//import axios from node modules axios
-
 
 
 let count = 0;
@@ -10,6 +8,7 @@ const day = date.getDay(); //sunday is 0
 const year = date.getFullYear();
 const month = date.getMonth();
 const dayOfMonth = date.getDate();
+// days of the week
 const days = ['Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 let reservations = [];
@@ -83,6 +82,7 @@ function setMonth (date) {
 }
 
 function activateCalenderHours (week) {
+    // every moment on the calender is clickable and will open a modal
     days.forEach(day => {
         const children = document.querySelectorAll(`#${day} > div`)
     children.forEach(child => {
@@ -100,13 +100,14 @@ function openModal (id,day,week) {
     modalTitle.innerHTML = `<h5 class="modal-title" id="staticBackdropLabel">Schedule class</h5>`
     let index = days.indexOf(day)
     // sunday as other logic for the index
-    index = index === 0 && day ===0 ? 7 : index
+    index = index === 0 && date.getDay() === 0 ? 7 : index
     let dayOfTheWeekSelected = week[index]
+    // show modal with name saved in local storage
     modalBody.innerHTML =`
     <p>${dayOfTheWeekSelected} hour: ${id/2}</p>
     <form>
         <label hidden for="name" class="form-label">name</label>
-        <input class="form-control" id="name" placeholder="name student"></input>
+        <input value=${localStorage.getItem("nameStudent")} class="form-control" id="name" placeholder="name student"></input>
         <label hidden for= "from" class="form-label">from</label>
         <select class="form-control" id="from" placeholder="from" >
             <option value="1">0.5 hour</option>
@@ -121,6 +122,7 @@ function openModal (id,day,week) {
 }
 
 function setButtonsPreviousAndNextWeek () {
+    //buttons to navigate the calendar
     week = setButton(".previous", false)
     week = setButton(".next", true) 
     return week
@@ -128,6 +130,7 @@ function setButtonsPreviousAndNextWeek () {
 }
 
 function setButton (button, next) {
+    //button to navigate the calendar
     document.querySelector(button).addEventListener('click', () => {
         next ? count++ : count--;
         const date = DateTime.local().plus({weeks: count}).toJSDate();
@@ -145,9 +148,12 @@ function loadReservations (week) {
 }
 
 function activateButton (date, time, week) {
+    // when user clicks the button schedule lesson, it will create a new reservation
     document.querySelector('.modal-footer > div:nth-child(2)').addEventListener('click', () => {
         const name = document.querySelector('#name').value
         let reservation = new Reservation(name, date, time)
+        // localStorage setItem
+        localStorage.setItem(`nameStudent`, JSON.stringify(reservation.name))
         postReservation(reservation, week)
     })
 }
@@ -181,6 +187,7 @@ function daysOfTheweekGenerator (untilNegative,date) {
 }
 
 function generateWeekArray (date, untilNegative) {
+    // we generate the week visibile in the calendar
         let positiveNumber = 1;
         let negativeNumber = untilNegative;
         let monday = null
@@ -216,7 +223,7 @@ async function postReservation (reservation, week) {
     // please don't forget to npm install axios before running this code
     console.log("posting reservation...") 
 
-    await axios.post('http://localhost:3000/reservations', {
+    await axios.post('https://calendarback-production-4a4b.up.railway.app/reservations', {
         nameStudent: reservation.name,
         date: reservation.date,
         time: reservation.time
@@ -233,9 +240,8 @@ async function postReservation (reservation, week) {
 async function getReservations (week) {
     // please don't forget to npm install axios before running this code
     console.log("getting reservations...")
-
-
-    await axios.get('http://localhost:3000/reservations')
+    let reservations = []
+    await axios.get('https://calendarback-production-4a4b.up.railway.app/reservations')
         .then(function (response) {
              reservations = response.data
            
@@ -261,6 +267,7 @@ function showReservations (week, reservations) {
         const hourReservation = reservation.time
         const nameStudent = reservation.nameStudent
         const dayNameReservation = days[dayIndexReservaton]
+
         // sunday as other logic for the index
         let index =  dayIndexReservaton === 0 && day === 0 ? 7  :  dayIndexReservaton
         console.log(week)
@@ -271,7 +278,7 @@ function showReservations (week, reservations) {
         let compareCurrent = currentDateOnCalendar.c
         let compareReservation = dateReservation.c
 
-        //compare the variables if true show the name of the student on the calendar
+        //compare the variables / if true show the name of the student on the calendar
         console.log(compareCurrent, compareReservation)
         console.log(compareCurrent.year === compareReservation.year && compareCurrent.month === compareReservation.month  && compareCurrent.day === compareReservation.day)
        
@@ -281,7 +288,7 @@ function showReservations (week, reservations) {
             arrayTrueMomentsForThisWeek.push(hourReservation+1, dayNameReservation, compareCurrent.day)
             console.log(arrayTrueMomentsForThisWeek)
         } else {
-            // if there is no match we set this moment to empty 
+            // if there is no match we set this moment to empty when it's not in the true moments array
             let isNotInArray = !arrayTrueMomentsForThisWeek.includes(hourReservation+1, dayNameReservation)
             if (isNotInArray) {
                 document.querySelector(`#${dayNameReservation} > div:nth-child(${hourReservation+1})`).innerText = ''
@@ -292,6 +299,7 @@ function showReservations (week, reservations) {
 
 
 function emptyWeek () {
+    // function to clear the calendar of reservations  (we need to do this before showing the reservations)
     var mondayDivs = document.querySelectorAll('#Monday div[id]');
     var tuesdayDivs = document.querySelectorAll('#Tuesday div[id]');
     var wednesdayDivs = document.querySelectorAll('#Wednesday div[id]');
