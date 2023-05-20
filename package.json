@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "@webpack-cli/generators": "^3.0.4",
     "node-sass": "^8.0.0",
     "nodemon": "^2.0.21"
   },
   "scripts": {
-    "build": "npm run lint && npm run bundle",
-    "lint": "eslint src",
-    "bundle": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "node-sass --include-path scss scss/styles.scss css/styles.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
@@ -19,6 +17,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
-    "sweetalert2": "^11.7.5"
+    "luxon": "^3.3.0",
+    "save-dev": "^0.0.1-security",
+    "sweetalert2": "^11.7.5",
+    "webpack": "^5.83.1"
   }
 }

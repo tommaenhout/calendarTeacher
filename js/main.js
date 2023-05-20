@@ -1,4 +1,4 @@
-import {DateTime} from 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/+esm'
+import {DateTime} from 'luxon'
 
 
 let count = 0;
