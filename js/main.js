@@ -1,5 +1,4 @@
-import {DateTime} from 'luxon'
-
+import DateTime from '../node_modules/luxon/src/datetime.js';
 
 let count = 0;
 const date = DateTime.local().plus({weeks: count}).toJSDate();
@@ -227,6 +226,7 @@ async function postReservation (reservation, week) {
         time: reservation.time
     })
         .then(function (response) {
+            console.log(response.data);
              Swal.fire(
                 'Appointment added!',
                 'You succesfully added an appointment!',
@@ -234,12 +234,14 @@ async function postReservation (reservation, week) {
               ) 
             loadReservations(week)
           })
-        .catch(function (error) {     
+        .catch(function (error) {
+        console.log(error);        
     })
 }
 
 async function getReservations (week) {
     // please don't forget to npm install axios before running this code
+    console.log("getting reservations...")
     let reservations = []
     await axios.get('https://calendarback-production-4a4b.up.railway.app/reservations')
         .then(function (response) {
@@ -259,14 +261,19 @@ function showReservations (week, reservations) {
     // empty calendar before showing the reservations
     emptyWeek()
     reservations.forEach(reservation => {
+        console.log(reservation)
         const dateReservation = DateTime.fromISO(reservation.date)
         let dayIndexReservaton = dateReservation.toJSDate().getDay()
+        console.log (week)
+        console.log('day', day, i)
         const hourReservation = reservation.time
         const nameStudent = reservation.nameStudent
         const dayNameReservation = days[dayIndexReservaton]
 
         // sunday as other logic for the index
         let index =  dayIndexReservaton === 0 && day === 0 ? 7  :  dayIndexReservaton
+        console.log(week)
+        console.log('week ' + week + 'index ', index)
         let currentDateOnCalendar = week[index]
 
         // make variables to compare the day of the week visible on the calendar with the day of the week provided by the reservation
