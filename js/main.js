@@ -142,7 +142,6 @@ function setButton (button, next) {
 }
 
 function loadReservations (week) {
-    console.log("fetching Reservations...")
     getReservations(week)
 
 }
@@ -172,7 +171,6 @@ function daysOfTheweekGenerator (untilNegative,date) {
             negativeNumber--
         }
         else if (i === untilNegative){
-            console.log("equal" + i)
             document.querySelector(`#title${days[day]}`).innerHTML= `<h3>${date.toJSDate().getDate()}</h3>`
         }
         else {
@@ -221,7 +219,7 @@ function generateWeekArray (date, untilNegative) {
 
 async function postReservation (reservation, week) {
     // please don't forget to npm install axios before running this code
-    console.log("posting reservation...") 
+
 
     await axios.post('https://calendarback-production-4a4b.up.railway.app/reservations', {
         nameStudent: reservation.name,
@@ -229,23 +227,25 @@ async function postReservation (reservation, week) {
         time: reservation.time
     })
         .then(function (response) {
-            console.log(response.data);
+             Swal.fire(
+                'Appointment added!',
+                'You succesfully added an appointment!',
+                'success'
+              ) 
             loadReservations(week)
           })
-        .catch(function (error) {
-        console.log(error);        
+        .catch(function (error) {     
     })
 }
 
 async function getReservations (week) {
     // please don't forget to npm install axios before running this code
-    console.log("getting reservations...")
     let reservations = []
     await axios.get('https://calendarback-production-4a4b.up.railway.app/reservations')
         .then(function (response) {
              reservations = response.data
            
-            showReservations(week, reservations)
+            showReservations(week, reservations) 
         })
         .catch(function (error) {
         console.log(error);        
@@ -259,19 +259,14 @@ function showReservations (week, reservations) {
     // empty calendar before showing the reservations
     emptyWeek()
     reservations.forEach(reservation => {
-        console.log(reservation)
         const dateReservation = DateTime.fromISO(reservation.date)
         let dayIndexReservaton = dateReservation.toJSDate().getDay()
-        console.log (week)
-        console.log('day', day, i)
         const hourReservation = reservation.time
         const nameStudent = reservation.nameStudent
         const dayNameReservation = days[dayIndexReservaton]
 
         // sunday as other logic for the index
         let index =  dayIndexReservaton === 0 && day === 0 ? 7  :  dayIndexReservaton
-        console.log(week)
-        console.log('week ' + week + 'index ', index)
         let currentDateOnCalendar = week[index]
 
         // make variables to compare the day of the week visible on the calendar with the day of the week provided by the reservation
@@ -279,14 +274,13 @@ function showReservations (week, reservations) {
         let compareReservation = dateReservation.c
 
         //compare the variables / if true show the name of the student on the calendar
-        console.log(compareCurrent, compareReservation)
-        console.log(compareCurrent.year === compareReservation.year && compareCurrent.month === compareReservation.month  && compareCurrent.day === compareReservation.day)
+
        
         if (compareCurrent.year === compareReservation.year && compareCurrent.month === compareReservation.month  && compareCurrent.day === compareReservation.day) {
             //set name student in calendar
         document.querySelector(`#${dayNameReservation} > div:nth-child(${hourReservation+1})`).innerText = `${nameStudent}`
             arrayTrueMomentsForThisWeek.push(hourReservation+1, dayNameReservation, compareCurrent.day)
-            console.log(arrayTrueMomentsForThisWeek)
+         
         } else {
             // if there is no match we set this moment to empty when it's not in the true moments array
             let isNotInArray = !arrayTrueMomentsForThisWeek.includes(hourReservation+1, dayNameReservation)
