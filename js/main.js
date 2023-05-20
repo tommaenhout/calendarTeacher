@@ -1,4 +1,4 @@
-const { DateTime } = require("luxon");
+import {DateTime} from 'https://cdn.jsdelivr.net/npm/luxon@3.3.0/+esm'
 
 
 let count = 0;

@@ -19,7 +19,6 @@
     "axios": "^1.4.0",
     "luxon": "^3.3.0",
     "save-dev": "^0.0.1-security",
-    "sweetalert2": "^11.7.5",
-    "webpack": "^5.83.1"
+    "sweetalert2": "^11.7.5"
   }
 }
