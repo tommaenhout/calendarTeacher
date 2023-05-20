@@ -1,4 +1,5 @@
-import DateTime from '../node_modules/luxon/src/datetime.js';
+const { DateTime } = require("luxon");
+
 
 let count = 0;
 const date = DateTime.local().plus({weeks: count}).toJSDate();
